@@ -26,6 +26,8 @@ gem "bootsnap", require: false
 # My Gems
 gem 'rubocop', '>= 1.0', '< 2.0'
 
+gem 'devise', '~> 4.9', '>= 4.9.2'
+
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end

@@ -1,4 +1,4 @@
-class CreateRecipeFoods < ActiveRecord::Migration[7.0]
+class CreateRecipeFood < ActiveRecord::Migration[7.0]
   def change
     create_table :recipe_foods do |t|
       t.integer :quantity

@@ -8,9 +8,20 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple-v1.css">
+    <script src="https://kit.fontawesome.com/59ba0ac1be.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
+  
+
+  <% if user_signed_in? %>
+  <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+  <% end %>
+
+  
+  <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
