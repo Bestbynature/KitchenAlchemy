@@ -9,7 +9,12 @@ class RecipesController < ApplicationController
   # GET /recipes/1 or /recipes/1.json
   def show
     @recipe = Recipe.find(params[:id])
-    index = params[:index].to_i
+    # index = params[:index].to_i
+
+    @recipe_foods = RecipeFood.joins(:food).where(recipe_id: @recipe.id).select("recipe_foods.*, foods.name, foods.price")
+    @recipe_foods.each do |recipe_food|
+      recipe_food.value = recipe_food.calculate_value
+    end
   end
 
   # GET /recipes/new
@@ -28,7 +33,7 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
-        format.html { redirect_to recipe_url(@recipe), notice: "Recipe was successfully created." }
+        format.html { redirect_to recipes_url, notice: "Recipe was successfully created." }
         format.json { render :show, status: :created, location: @recipe }
       else
         format.html { render :new, status: :unprocessable_entity }

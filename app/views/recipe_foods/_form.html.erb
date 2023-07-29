@@ -17,13 +17,13 @@
   </div>
 
   <div>
-    <%= form.label :recipe_id, style: "display: block" %>
-    <%= form.text_field :recipe_id %>
+    <%= form.label :recipe_id, "Recipe:" %>
+    <%= form.collection_select :recipe_id, Recipe.all, :id, :name %>
   </div>
 
   <div>
-    <%= form.label :food_id, style: "display: block" %>
-    <%= form.text_field :food_id %>
+    <%= form.label :food_id, "Food:" %>
+    <%= form.collection_select :food_id, Food.all, :id, :name %>
   </div>
 
   <div>
