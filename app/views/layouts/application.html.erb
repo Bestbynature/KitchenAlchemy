@@ -13,15 +13,9 @@
   </head>
 
   <body>
-  
-
-  <% if user_signed_in? %>
-  <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+  <% if current_user %>
+  <%= render "layouts/navbar" %>
   <% end %>
-
-  
-  <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>

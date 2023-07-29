@@ -33,18 +33,12 @@
 
   <div>
     <%= form.label :public, style: "display: block" %>
-    <%= form.text_field :public %>
+    <%= form.check_box :public %>
   </div>
 
-  <div>
-    <%= form.label :boolean, style: "display: block" %>
-    <%= form.text_field :boolean %>
-  </div>
+    <%= form.hidden_field :user_id  %>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
+    <%= form.hidden_field :index, value: params[:index] %>
 
   <div>
     <%= form.submit %>

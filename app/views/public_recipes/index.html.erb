@@ -1,0 +1,21 @@
+
+<h1 style="text-align:center">Public Recipes</h1>
+
+<% @recipes.each do |recipe| %>
+
+    <div class="element">
+      <div class="element_left">
+        <p><strong><%= recipe.name %></strong></p>
+        <p>By: <%= puts recipe.user.inspect %></strong></p>
+      </div>
+
+      <div class="element_mid"></div>
+
+      <div class="element_right">
+        <p>Total food items: </strong> </p>
+        <p>Total price: $</p>
+      </div>
+
+    </div>
+
+<%end%>

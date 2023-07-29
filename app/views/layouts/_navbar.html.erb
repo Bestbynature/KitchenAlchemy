@@ -1,0 +1,18 @@
+<header>
+<% if user_signed_in? %>
+  <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+  <% end %>
+  <nav>
+    <ul>
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Food", foods_path %></li>
+        <li><%= link_to "Recipes", recipes_path %></li>
+        <li><%= link_to "Public Recipes", public_recipes_path %></li>
+        <li><%= link_to "Inventories", inventories_path %></li>
+
+  </nav>
+
+</header>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>

@@ -3,11 +3,26 @@
 <h1>Recipes</h1>
 
 <div id="recipes">
-  <% @recipes.each do |recipe| %>
-    <%= render recipe %>
-    <p>
-      <%= link_to "Show this recipe", recipe %>
-    </p>
+  <% @recipes.each_with_index do |recipe, index| %>
+
+    <div class="element">
+      <div class="element_left">
+        <p><strong>Recipe <%= index+1 %></strong></p>
+        <p><%= link_to "Show this recipe", recipe_path(recipe, index: index+1) %></p>
+        <%= button_to "Delete this recipe", recipe, method: :delete, data: { confirm: "Are you sure?" } %>
+      </div>
+
+      <div class="element_mid"></div>
+
+      <div class="element_right">
+        <p><strong>Description for the recipe </strong> </p>
+        <p><%= recipe.description %>
+      </div>
+
+    </div>
+
+
+    
   <% end %>
 </div>
 
