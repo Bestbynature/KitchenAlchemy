@@ -17,9 +17,16 @@
   </div>
 
   <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
   </div>
+
+  <div>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div>
+
+  <%= form.hidden_field :index, value: params[:index] %>
+
 
   <div>
     <%= form.submit %>

@@ -1,9 +1,31 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @inventory %>
+<h2 style="text-align:center">Inventory <%= params[:index].to_i %></h2>
 
+<p style="text-align: right;"><%= link_to "Add food", new_inventory_food_path(index: params[:index]) %></p>
+<hr style="width: 100%; border: 2px solid #ccc">
+<h3><%= @inventory.name %></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantity</th>
+      <th>Food</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @inventory_foods.each do |inventory_food| %>
+      <tr>
+        <td><%= inventory_food.quantity %></td>
+        <td><%= inventory_food.food.name %></td>
+        <td><%= link_to 'Show', inventory_food %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <div>
-  <%= link_to "Edit this inventory", edit_inventory_path(@inventory) %> |
+  <%= link_to "Edit this inventory", edit_inventory_path(@inventory, index: params[:index]) %> |
   <%= link_to "Back to inventories", inventories_path %>
 
   <%= button_to "Destroy this inventory", @inventory, method: :delete %>

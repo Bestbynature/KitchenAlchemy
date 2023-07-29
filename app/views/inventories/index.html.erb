@@ -1,14 +1,28 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Inventories</h1>
+<%= link_to "New inventory", new_inventory_path %>
 
 <div id="inventories">
-  <% @inventories.each do |inventory| %>
-    <%= render inventory %>
-    <p>
-      <%= link_to "Show this inventory", inventory %>
-    </p>
+  <% @inventories.each_with_index do |inventory, index| %>
+    <div class="element">
+      <div class="element_left">
+        <p><strong>Inventory <%= index+1 %></strong></p>
+        <p><%= link_to "Show this inventory", inventory_path(inventory, index: index+1) %></p>
+        <%= button_to "Delete this inventory", inventory, method: :delete, data: { confirm: "Are you sure?" } %>
+      </div>
+
+      <div class="element_mid"></div>
+
+      <div class="element_right">
+        <p><strong>Description for the inventory </strong> </p>
+        <p><%= inventory.description %>
+      </div>
+
+    </div>
+
+
+    
   <% end %>
 </div>
 
-<%= link_to "New inventory", new_inventory_path %>

@@ -2,13 +2,27 @@
 
 <h1>Inventory foods</h1>
 
+<%= link_to "New inventory food", new_inventory_food_path %>
 <div id="inventory_foods">
   <% @inventory_foods.each do |inventory_food| %>
-    <%= render inventory_food %>
-    <p>
-      <%= link_to "Show this inventory food", inventory_food %>
-    </p>
+    <table>
+  <thead>
+    <tr>
+      <th>Quantity</th>
+      <th>Inventory</th>
+      <th>Food</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= inventory_food.quantity %></td>
+      <td><%= inventory_food.inventory_id %></td>
+      <td><%= inventory_food.food_id %></td>
+      <td><%= link_to 'Show', inventory_food %></td>
+    </tr>
+  </tbody>
+</table>
   <% end %>
 </div>
 
-<%= link_to "New inventory food", new_inventory_food_path %>

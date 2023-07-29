@@ -25,7 +25,8 @@ class InventoryFoodsController < ApplicationController
 
     respond_to do |format|
       if @inventory_food.save
-        format.html { redirect_to inventory_food_url(@inventory_food), notice: "Inventory food was successfully created." }
+      # index_value = params[:index]
+        format.html { redirect_to inventory_path(@inventory_food.inventory, index: params[:inventory_food][:index]), notice: "Inventory food was successfully created." }
         format.json { render :show, status: :created, location: @inventory_food }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +39,7 @@ class InventoryFoodsController < ApplicationController
   def update
     respond_to do |format|
       if @inventory_food.update(inventory_food_params)
-        format.html { redirect_to inventory_food_url(@inventory_food), notice: "Inventory food was successfully updated." }
+        format.html { redirect_to inventory_url(@inventory_food.inventory), notice: "Inventory food was successfully updated." }
         format.json { render :show, status: :ok, location: @inventory_food }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +53,7 @@ class InventoryFoodsController < ApplicationController
     @inventory_food.destroy
 
     respond_to do |format|
-      format.html { redirect_to inventory_foods_url, notice: "Inventory food was successfully destroyed." }
+      format.html { redirect_to inventories_url, notice: "Inventory food was successfully destroyed." }
       format.json { head :no_content }
     end
   end

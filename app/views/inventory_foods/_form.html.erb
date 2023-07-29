@@ -17,14 +17,16 @@
   </div>
 
   <div>
-    <%= form.label :inventory_id, style: "display: block" %>
-    <%= form.text_field :inventory_id %>
-  </div>
+  <%= form.label :inventory_id, style: "display: block" %>
+  <%= form.collection_select :inventory_id, Inventory.all, :id, :name %>
+</div>
 
-  <div>
-    <%= form.label :food_id, style: "display: block" %>
-    <%= form.text_field :food_id %>
-  </div>
+<div>
+  <%= form.label :food_id, style: "display: block" %>
+  <%= form.collection_select :food_id, Food.all, :id, :name %>
+</div>
+
+<%= form.hidden_field :index, value: params[:index] %>
 
   <div>
     <%= form.submit %>

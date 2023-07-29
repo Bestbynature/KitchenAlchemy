@@ -8,6 +8,9 @@ class InventoriesController < ApplicationController
 
   # GET /inventories/1 or /inventories/1.json
   def show
+    @inventory = Inventory.find(params[:id])
+    @inventory_foods = InventoryFood.where(inventory_id: @inventory.id)
+
   end
 
   # GET /inventories/new
@@ -21,7 +24,7 @@ class InventoriesController < ApplicationController
 
   # POST /inventories or /inventories.json
   def create
-    @inventory = Inventory.new(inventory_params)
+    @inventory = current_user.inventories.new(inventory_params)
 
     respond_to do |format|
       if @inventory.save
@@ -38,7 +41,9 @@ class InventoriesController < ApplicationController
   def update
     respond_to do |format|
       if @inventory.update(inventory_params)
-        format.html { redirect_to inventory_url(@inventory), notice: "Inventory was successfully updated." }
+      index_value = params[:inventory][:index]
+
+        format.html { redirect_to inventory_url(@inventory, index: index_value), notice: "Inventory was successfully updated." }
         format.json { render :show, status: :ok, location: @inventory }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -65,6 +70,6 @@ class InventoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def inventory_params
-      params.require(:inventory).permit(:name, :user_id)
+      params.require(:inventory).permit(:name, :user_id, :description)
     end
 end

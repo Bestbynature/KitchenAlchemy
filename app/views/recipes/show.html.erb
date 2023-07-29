@@ -69,26 +69,8 @@
         <td><%= recipe_food.value %></td>
         <td><%= button_to "Delete", recipe_food, method: :delete, data: { confirm: "Are you sure you want to delete this recipe food?" } %></td>
       </tr>
-
-      <% # Update the column totals %>
-      <% total_quantity += recipe_food.quantity %>
-      <% total_price += recipe_food.price %>
-      <% total_value += recipe_food.value %>
-
-      <% # Increment total items added %>
-      <% total_items_added += 1 %>
     <% end %>
   </tbody>
-
-  <tfoot>
-    <tr style="display:block;"> 
-      <td colspan="2">Totals:</td>
-      <td><%= total_quantity %></td>
-      <td><%= total_price %></td>
-      <td><%= total_value %></td>
-      <td><%= total_items_added %></td>
-    </tr>
-  </tfoot>
 
 </table>
 

@@ -1,10 +1,10 @@
 <header>
+<div class="banner1">
 <% if user_signed_in? %>
   <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
   <% end %>
   <nav>
     <ul>
-        <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Food", foods_path %></li>
         <li><%= link_to "Recipes", recipes_path %></li>
         <li><%= link_to "Public Recipes", public_recipes_path %></li>
@@ -12,13 +12,15 @@
         <li><%= link_to "Recipe Foods", recipe_foods_path %></li>
 
   </nav>
+  </div>
 
-</header>
-<div>
-  <p>Alchemy kitchen....where the magic happens</p>
+<div class="banner2">
+  <h3>Alchemy kitchen....where the magic happens</h3>
   <% if user_signed_in? %>
     <p>You're signed in as <%= current_user.name %></p>
   <% else %>
     <p>You're yet to sign in</p>
   <% end %>
 </div>
+
+</header>
