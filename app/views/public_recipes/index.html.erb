@@ -1,7 +1,7 @@
 
 <h1 style="text-align:center">Public Recipes</h1>
 
-<% @recipes.each do |recipe| %>
+<% @recipes_true.each do |recipe| %>
 
     <div class="element">
       <div class="element_left">
@@ -12,10 +12,12 @@
       <div class="element_mid"></div>
 
       <div class="element_right">
-        <p>Total food items: </strong> </p>
-        <p>Total price: $</p>
+      <% recipe_totals = @recipe_totals[recipe.id] %>
+      <p>Total food items: <%= recipe_totals[:total_items_added] %></p>
+      <p>Total price: $ <%= recipe_totals[:total_value] %></p>
       </div>
 
     </div>
 
 <%end%>
+
