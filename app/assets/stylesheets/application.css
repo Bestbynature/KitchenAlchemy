@@ -40,3 +40,19 @@ nav ul li {
 .element_right_1 {
     flex-basis: 30%;
 }
+
+.disable {
+    background-color: #dddddd;
+    border: 1px solid #cccccc;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #666666;
+    cursor: not-allowed;
+    border-radius: 5px;
+}
+
+.flex-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

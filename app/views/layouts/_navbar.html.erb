@@ -13,6 +13,11 @@
   </nav>
 
 </header>
-
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<div>
+  <p>Alchemy kitchen....where the magic happens</p>
+  <% if user_signed_in? %>
+    <p>You're signed in as <%= current_user.name %></p>
+  <% else %>
+    <p>You're yet to sign in</p>
+  <% end %>
+</div>
