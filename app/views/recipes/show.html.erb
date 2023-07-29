@@ -24,7 +24,10 @@
     </div>
 
     <div class="flex-2">
-          <%= link_to "Generate Shopping List", generate_shopping_list_path(@recipe) %>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+        Generate Shopping List
+    </button>
+          <%# link_to "Generate Shopping List", generate_shopping_list_path(@recipe) %>
           <%= link_to "Add Ingredients", "#", class: "disable"  %>
     </div>
 
@@ -74,4 +77,34 @@
 
 </table>
 
-<%# render partial: "totals", locals: { recipe_foods: @recipe_foods } %>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle" text-center>Generate Shopping List</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="inventoryModalBody">
+        <p> Choose an inventory to use</p>
+        <select id="inventorySelect">
+          <option value="0">Select inventory</option>
+          <% @inventories.each do |inventory| %>
+            <option value="<%= inventory.id %>"><%= inventory.name %></option>
+          <% end %>
+        </select>
+        <button type="button" class="btn btn-primary" id="generateShoppingListBtn">Generate</button>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var recipeId = <%= @recipe.id %>;
+</script>
