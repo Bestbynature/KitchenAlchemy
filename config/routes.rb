@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   resources :users, only: [:index]
 
   get '/public_recipes', to: 'public_recipes#index'
-  get 'generate_shopping_list/:id', to: 'shopping_lists#generate', as: :generate_shopping_list
+  get 'generate_shopping_list/', to: 'shopping_lists#generate', as: :generate_shopping_list
 
 end

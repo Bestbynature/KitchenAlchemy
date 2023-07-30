@@ -14,11 +14,14 @@ nav ul li {
 }
 
 .element {
-    border: 2px solid black;
     padding: 10px;
     margin: 10px;
     display: flex;
     align-items: flex-start;
+}
+
+.border {
+    border: 2px solid black;
 }
 
 .element_mid {

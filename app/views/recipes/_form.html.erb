@@ -32,9 +32,10 @@
   </div>
 
   <div>
-    <%= form.label :public, style: "display: block" %>
-    <%= form.check_box :public %>
-  </div>
+  <%= form.label :public, style: "display: block" %>
+  <%= form.radio_button :public, true, checked: true %> <%= form.label :public, "True" %>
+  <%= form.radio_button :public, false %> <%= form.label :public, "False" %>
+</div>
 
     <%= form.hidden_field :user_id  %>
 

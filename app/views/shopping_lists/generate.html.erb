@@ -1,1 +1,41 @@
-This is the generated shopping list
+<h2 style="text-align: center">Shopping List</h2>
+
+<div class="element">
+    <div class="element_left_1">
+        <p>Amount of food to buy: <%= @count %></p>
+        <p>Total value of food needed: $ <%= @sum %></p>
+    </div>
+     
+    <% if params[:recipe_id] && params[:inventory_id] %>
+    <div class="element_right_1">
+        <p>Recipe:  <%= params[:recipe_id] %></p>
+        <p>Inventory: <%= params[:inventory_id] %> </p>
+    </div>
+    <% else %>
+    <p>No recipe_id or inventory_id found on the list.</p>
+<% end %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <% @recipe_foods.each do |recipe_food| %>
+      <tr>
+        <td><%= recipe_food.name %></td>
+        <td><%= recipe_food.quantity %></td>
+        <td>$ <%= recipe_food.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+
+
