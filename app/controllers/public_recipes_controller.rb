@@ -1,8 +1,8 @@
 class PublicRecipesController < ApplicationController
     def index
         @recipes_all = Recipe.all.includes(:user)
-        @recipes_true = Recipe.where(public: true).includes(:user)
-      
+        @recipes_true = Recipe.where(public: true).order(created_at: :desc).includes(:user)
+
         @recipe_totals = {}
       
         @recipes_true.each do |recipe|

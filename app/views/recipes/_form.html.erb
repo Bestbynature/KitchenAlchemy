@@ -32,10 +32,9 @@
   </div>
 
   <div>
-  <%= form.label :public, style: "display: block" %>
-  <%= form.radio_button :public, true, checked: true %> <%= form.label :public, "True" %>
-  <%= form.radio_button :public, false %> <%= form.label :public, "False" %>
-</div>
+    <%= form.label :public, style: "display: block" %>
+    <%= form.select :public, options_for_select({ "True" => 1, "False" => 0 }), { include_blank: true } %>
+  </div>
 
     <%= form.hidden_field :user_id  %>
 
