@@ -2,10 +2,12 @@ class RecipeFood < ApplicationRecord
   belongs_to :recipe
   belongs_to :food
 
+  validates :quantity, presence: true, numericality: { greater_than_or_equal_to: 0 }
+
   attr_accessor :value
 
   # Method to calculate the value
   def calculate_value
-    self.quantity * self.food.price
+    quantity * food.price
   end
 end

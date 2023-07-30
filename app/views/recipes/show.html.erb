@@ -15,19 +15,16 @@
 
       <div class="element_right_1">Public
         <% if @recipe.public %>
-          <i class="fa-solid fa-toggle-on fa-2xl" style="color: #159341;"></i>
+          <i class="fa-solid fa-toggle-on fa-2xl toggle-icon" data-recipe-id="<%= @recipe.id %>" style="color: #159341;"></i>
         <% else %>
-          <i class="fa-solid fa-toggle-off fa-2xl" style="color: #cc1f1a;"></i>
+          <i class="fa-solid fa-toggle-off fa-2xl toggle-icon" data-recipe-id="<%= @recipe.id %>" style="color: #cc1f1a;"></i>
         <% end %>
       </div>
 
     </div>
 
     <div class="flex-2">
-    <button type="button" id="showModalBtn">
-        Generate Shopping List
-    </button>
-          <%# link_to "Generate Shopping List", generate_shopping_list_path(@recipe) %>
+    <button type="button" id="showModalBtn">Generate Shopping List</button>
           <%= link_to "Add Ingredients", "#", class: "disable"  %>
     </div>
 
@@ -117,7 +114,7 @@
     showModalBtn.addEventListener("click", function() {
       document.body.appendChild(modalOverlay);
       modal.style.display = "block";
-      window.scrollTo(0, 0); // Scroll to the top to view the modal
+      window.scrollTo(0, 0); 
     });
 
     closeModalBtn.addEventListener("click", function() {
@@ -129,6 +126,51 @@
           modal.style.display = "none";
           document.body.removeChild(modalOverlay);
         }
+      });
+
+      document.addEventListener("click", function(event) {
+      var target = event.target;
+
+      if (target.matches(".toggle-icon")) {
+        toggleRecipePublicStatus(recipeId);
+      }
+    });
+
+      function toggleRecipePublicStatus(recipeId) {
+        var icon = document.querySelector(`[data-recipe-id="${recipeId}"]`);
+        var isPublic = icon.classList.contains("fa-toggle-on");
+  
+        var newStatus = isPublic ? false : true;
+        icon.classList.toggle("fa-toggle-on", !isPublic);
+        icon.classList.toggle("fa-toggle-off", isPublic);
+  
+        if (newStatus) {
+          icon.style.color = "#159341"; 
+        } else {
+          icon.style.color = "#cc1f1a"; 
+        }
+        
+        $.ajax({
+          url: `/recipes/${recipeId}`,
+          type: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-Token": "<%= form_authenticity_token %>",
+          },
+          data: JSON.stringify({ recipe: { public: newStatus } }),
+          success: function(data) {
+          },
+          error: function(xhr, status, error) {
+          },
+        });
+      }
+  
+      var toggleIcons = document.querySelectorAll(".toggle-icon");
+      toggleIcons.forEach(function(icon) {
+        icon.addEventListener("click", function() {
+          var recipeId = icon.getAttribute("data-recipe-id");
+          toggleRecipePublicStatus(recipeId);
+        });
       });
       
 
@@ -143,6 +185,4 @@
         }
       });
   });
-
-  
 </script>
