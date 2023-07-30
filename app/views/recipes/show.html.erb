@@ -24,7 +24,7 @@
     </div>
 
     <div class="flex-2">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    <button type="button" id="showModalBtn">
         Generate Shopping List
     </button>
           <%# link_to "Generate Shopping List", generate_shopping_list_path(@recipe) %>
@@ -85,9 +85,6 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle" text-center>Generate Shopping List</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
       <div class="modal-body" id="inventoryModalBody">
         <p> Choose an inventory to use</p>
@@ -107,4 +104,45 @@
 
 <script>
   var recipeId = <%= @recipe.id %>;
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var showModalBtn = document.getElementById("showModalBtn");
+    var modal = document.getElementById("exampleModalCenter");
+    var closeModalBtn = modal.querySelector(".modal-footer button");
+    var modalOverlay = document.createElement("div");
+    modalOverlay.classList.add("modal-overlay");
+
+    showModalBtn.addEventListener("click", function() {
+      document.body.appendChild(modalOverlay);
+      modal.style.display = "block";
+      window.scrollTo(0, 0); // Scroll to the top to view the modal
+    });
+
+    closeModalBtn.addEventListener("click", function() {
+      modal.style.display = "none";
+    });
+
+    modalOverlay.addEventListener("click", function() {
+      if (event.target === modal) {
+          modal.style.display = "none";
+          document.body.removeChild(modalOverlay);
+        }
+      });
+      
+
+      $(document).on('click', '#generateShoppingListBtn', function (event) {
+        event.preventDefault();
+        
+        var selectedInventoryId = $('#inventorySelect').val();
+        if (selectedInventoryId > 0) {
+          window.location.href = '/generate_shopping_list?recipe_id=' + recipeId + '&inventory_id=' + selectedInventoryId;
+        } else {
+          alert('Please select an inventory.');
+        }
+      });
+  });
+
+  
 </script>
