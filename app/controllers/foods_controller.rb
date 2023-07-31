@@ -5,6 +5,18 @@ class FoodsController < ApplicationController
   # GET /foods or /foods.json
   def index
     @foods = Food.all
+
+    if params[:sort_by] == "name"
+      @sort_by = "name"
+      @direction = params[:direction] || "asc"
+      @foods = @foods.order(name: @direction)
+    else
+      # Default sorting if no sorting params are provided
+      @sort_by = nil
+      @direction = nil
+      # You may change the default sorting here, like sorting by id in ascending order:
+      @foods = @foods.order(id: :asc)
+    end
   end
 
   # GET /foods/1 or /foods/1.json
@@ -65,6 +77,6 @@ class FoodsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def food_params
-    params.require(:food).permit(:name, :measurement_unit, :price)
+    params.require(:food).permit(:name, :measurement_unit, :price, :quantity)
   end
 end

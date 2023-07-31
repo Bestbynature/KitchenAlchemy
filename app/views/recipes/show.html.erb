@@ -47,9 +47,8 @@
 <table>
   <thead>
     <tr>
-      <th>Food Name</th>
+      <th>Food</th>
       <th>Quantity</th>
-      <th>Price</th>
       <th>Value</th>
       <th>Action</th>
     </tr>
@@ -65,7 +64,6 @@
       <tr>
         <td><%= recipe_food.name %></td>
         <td><%= recipe_food.quantity %></td>
-        <td><%= recipe_food.price %></td>
         <td><%= recipe_food.value %></td>
         <td><%= button_to "Delete", recipe_food, method: :delete, data: { confirm: "Are you sure you want to delete this recipe food?" } %></td>
       </tr>
@@ -87,7 +85,7 @@
         <p> Choose an inventory to use</p>
         <select id="inventorySelect">
           <option value="0">Select inventory</option>
-          <% @inventories.each do |inventory| %>
+          <% @recipe_foods.each do |inventory| %>
             <option value="<%= inventory.id %>"><%= inventory.name %></option>
           <% end %>
         </select>

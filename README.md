@@ -1,5 +1,5 @@
 <!-- Insert an image from the current directory -->
-![ERD ==> DATA MODEL](./recipe_erd.png)
+![ERD ==> DATA MODEL](./recipe_erd_2_members.png)
 
 <a name="readme-top"></a>
 

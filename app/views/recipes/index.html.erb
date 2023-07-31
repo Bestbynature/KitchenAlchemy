@@ -6,11 +6,11 @@
 <div id="recipes">
   <% @recipes.each_with_index do |recipe, index| %>
 
-    <div class="element">
+    <div class="element border">
       <div class="element_left">
         <p><strong>Recipe <%= index+1 %></strong></p>
-        <p><%= link_to "Show this recipe", recipe_path(recipe, index: index+1) %></p>
-        <%= button_to "Delete this recipe", recipe, method: :delete, data: { confirm: "Are you sure?" } %>
+        <p><%= link_to "Details", recipe_path(recipe, index: index+1) %></p>
+        <%= button_to "Remove", recipe, method: :delete, data: { confirm: "Are you sure?" } %>
       </div>
 
       <div class="element_mid"></div>

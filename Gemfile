@@ -34,6 +34,10 @@ end
 
 group :development do
   gem 'web-console'
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
+  gem 'rspec-mocks', '3.12.6'
+  gem 'rspec-rails'
 end
 
 group :test do

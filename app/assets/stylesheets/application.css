@@ -102,3 +102,12 @@ nav ul li {
 .fa-solid {
   cursor: pointer;
 }
+
+.arrow-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.arrow-icon {
+  text-decoration: none;
+}

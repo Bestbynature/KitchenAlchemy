@@ -6,9 +6,9 @@
 <table id="foods">
   <thead>
     <tr>
-      <th>Name</th>
+    <th class="arrow-flex"> Food <%= link_to raw("&#9660;"), sort_by: "name", direction: (@sort_by == "name" && @direction == "asc" ? "desc" : "asc"), class: "arrow-icon" %></th>
       <th>Measurement Unit</th>
-      <th>Price</th>
+      <th>Unit Price</th>
       <th>Actions</th>
     </tr>
   </thead>

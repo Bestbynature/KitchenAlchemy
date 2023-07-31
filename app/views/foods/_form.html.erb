@@ -22,6 +22,11 @@
   </div>
 
   <div>
+    <%= form.label :quantity, style: "display: block" %>
+    <%= form.number_field :quantity, step: 1, min: 1 %>
+  </div>
+
+  <div>
     <%= form.label :price, style: "display: block" %>
     <%= form.text_field :price %>
   </div>

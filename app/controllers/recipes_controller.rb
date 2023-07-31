@@ -17,7 +17,6 @@ class RecipesController < ApplicationController
     @recipe_foods.each do |recipe_food|
       recipe_food.value = recipe_food.calculate_value
     end
-    @inventories = Inventory.where(user_id: current_user.id)
   end
 
   # GET /recipes/new
