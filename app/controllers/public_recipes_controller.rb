@@ -19,6 +19,9 @@ class PublicRecipesController < ApplicationController
       total_value = @recipes_join.sum(&:value)
 
       @recipe_totals[recipe.id] = { total_items_added:, total_value: }
+
+      index_true = @recipes_all.find_index { |r| r.id == recipe.id }
+      recipe.index_true = index_true + 1
     end
   end
 

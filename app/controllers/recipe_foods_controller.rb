@@ -44,7 +44,6 @@ class RecipeFoodsController < ApplicationController
   def destroy
     recipe_id = @recipe_food.recipe_id
     index_value = session[:index]
-    puts index_value
     @recipe_food.destroy
 
     respond_to do |format|

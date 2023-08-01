@@ -7,10 +7,10 @@
       <div class="element_left">
         <p><strong><%= recipe.name %></strong></p>
         <p>By: <%= recipe.user.name %></strong></p>
-        <%= link_to "View Recipe", recipe_path(recipe, index: recipe.id), class: "btn" %>
+        <%= link_to "View Recipe", recipe_path(recipe, index: recipe.index_true), class: "btn" %>
       </div>
 
-      <div class="element_mid"></div>
+      <div class="element_mid">&nbsp;</div>
 
       <div class="element_right">
       <% recipe_totals = @recipe_totals[recipe.id] %>

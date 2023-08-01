@@ -7,6 +7,6 @@ class RecipeFood < ApplicationRecord
   attr_accessor :value
 
   def calculate_value
-    quantity.to_f / food.quantity * food.price
+    quantity * food.price
   end
 end
