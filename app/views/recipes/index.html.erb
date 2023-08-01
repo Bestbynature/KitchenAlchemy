@@ -10,7 +10,7 @@
       <div class="element_left">
         <p><strong>Recipe <%= index+1 %></strong></p>
         <p><%= link_to "Details", recipe_path(recipe, index: index+1) %></p>
-        <%= button_to "Remove", recipe, method: :delete, data: { confirm: "Are you sure?" } %>
+        <%= button_to "Remove", recipe, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
       </div>
 
       <div class="element_mid"></div>

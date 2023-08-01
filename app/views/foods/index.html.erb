@@ -7,6 +7,7 @@
   <thead>
     <tr>
     <th class="arrow-flex"> Food <%= link_to raw("&#9660;"), sort_by: "name", direction: (@sort_by == "name" && @direction == "asc" ? "desc" : "asc"), class: "arrow-icon" %></th>
+      <th>Quantity</th>
       <th>Measurement Unit</th>
       <th>Unit Price</th>
       <th>Actions</th>
@@ -15,7 +16,8 @@
   <tbody>
     <% @foods.each do |food| %>
       <tr>
-        <td><%= food.name %></td>
+      <td><%= food.name %></td>
+      <td><%= food.quantity %></td>
         <td><%= food.measurement_unit %></td>
         <td>$<%= food.price %></td>
         <td>

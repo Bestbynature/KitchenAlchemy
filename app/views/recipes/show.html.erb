@@ -25,23 +25,14 @@
 
     <div class="flex-2">
     <button type="button" id="showModalBtn">Generate Shopping List</button>
-          <%= link_to "Add Ingredients", "#", class: "disable"  %>
+          <%= link_to "Add Ingredients", new_recipe_food_path(recipe_id: @recipe.id, index: params[:index])  %>
     </div>
 
     <hr />
 
-    <div>
-  <%= link_to "Edit this recipe", edit_recipe_path(@recipe, index: params[:index]) %> |
-  <%= link_to "Back to recipes", recipes_path %>
+<h3><%= @recipe.name %></h3>
 
-  <%= button_to "Destroy this recipe", @recipe, method: :delete %>
-</div>
-
-    <!-- show.html.erb -->
-
-<h1><%= @recipe.name %></h1>
-
-<%= link_to "Public Recipe", public_recipes_path %>
+<%# link_to "Public Recipe", public_recipes_path %>
 
 
 <table>
@@ -54,7 +45,7 @@
     </tr>
   </thead>
   <tbody>
-    <% # Initialize variables to store the column totals and total items added %>
+    <%# Initialize variables to store the column totals and total items added %>
     <% total_quantity = 0 %>
     <% total_price = 0 %>
     <% total_value = 0 %>
@@ -64,8 +55,8 @@
       <tr>
         <td><%= recipe_food.name %></td>
         <td><%= recipe_food.quantity %></td>
-        <td><%= recipe_food.value %></td>
-        <td><%= button_to "Delete", recipe_food, method: :delete, data: { confirm: "Are you sure you want to delete this recipe food?" } %></td>
+        <td>$<%= recipe_food.value %></td>
+        <td><%= button_to "Delete", recipe_food, method: :delete, data: { turbo_confirm: "Are you sure you want to delete this recipe food?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -74,113 +65,4 @@
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle" text-center>Generate Shopping List</h5>
-      </div>
-      <div class="modal-body" id="inventoryModalBody">
-        <p> Choose an inventory to use</p>
-        <select id="inventorySelect">
-          <option value="0">Select inventory</option>
-          <% @recipe_foods.each do |inventory| %>
-            <option value="<%= inventory.id %>"><%= inventory.name %></option>
-          <% end %>
-        </select>
-        <button type="button" class="btn btn-primary" id="generateShoppingListBtn">Generate</button>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 
-<script>
-  var recipeId = <%= @recipe.id %>;
-</script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var showModalBtn = document.getElementById("showModalBtn");
-    var modal = document.getElementById("exampleModalCenter");
-    var closeModalBtn = modal.querySelector(".modal-footer button");
-    var modalOverlay = document.createElement("div");
-    modalOverlay.classList.add("modal-overlay");
-
-    showModalBtn.addEventListener("click", function() {
-      document.body.appendChild(modalOverlay);
-      modal.style.display = "block";
-      window.scrollTo(0, 0); 
-    });
-
-    closeModalBtn.addEventListener("click", function() {
-      modal.style.display = "none";
-    });
-
-    modalOverlay.addEventListener("click", function() {
-      if (event.target === modal) {
-          modal.style.display = "none";
-          document.body.removeChild(modalOverlay);
-        }
-      });
-
-      document.addEventListener("click", function(event) {
-      var target = event.target;
-
-      if (target.matches(".toggle-icon")) {
-        toggleRecipePublicStatus(recipeId);
-      }
-    });
-
-      function toggleRecipePublicStatus(recipeId) {
-        var icon = document.querySelector(`[data-recipe-id="${recipeId}"]`);
-        var isPublic = icon.classList.contains("fa-toggle-on");
-  
-        var newStatus = isPublic ? false : true;
-        icon.classList.toggle("fa-toggle-on", !isPublic);
-        icon.classList.toggle("fa-toggle-off", isPublic);
-  
-        if (newStatus) {
-          icon.style.color = "#159341"; 
-        } else {
-          icon.style.color = "#cc1f1a"; 
-        }
-        
-        $.ajax({
-          url: `/recipes/${recipeId}`,
-          type: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-Token": "<%= form_authenticity_token %>",
-          },
-          data: JSON.stringify({ recipe: { public: newStatus } }),
-          success: function(data) {
-          },
-          error: function(xhr, status, error) {
-          },
-        });
-      }
-  
-      var toggleIcons = document.querySelectorAll(".toggle-icon");
-      toggleIcons.forEach(function(icon) {
-        icon.addEventListener("click", function() {
-          var recipeId = icon.getAttribute("data-recipe-id");
-          toggleRecipePublicStatus(recipeId);
-        });
-      });
-      
-
-      $(document).on('click', '#generateShoppingListBtn', function (event) {
-        event.preventDefault();
-        
-        var selectedInventoryId = $('#inventorySelect').val();
-        if (selectedInventoryId > 0) {
-          window.location.href = '/generate_shopping_list?recipe_id=' + recipeId + '&inventory_id=' + selectedInventoryId;
-        } else {
-          alert('Please select an inventory.');
-        }
-      });
-  });
-</script>
