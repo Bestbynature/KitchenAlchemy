@@ -111,3 +111,10 @@ nav ul li {
 .arrow-icon {
   text-decoration: none;
 }
+
+.public-update {
+  position: relative;
+  bottom: 2.4rem;
+  cursor: pointer;
+  opacity: 0;
+}

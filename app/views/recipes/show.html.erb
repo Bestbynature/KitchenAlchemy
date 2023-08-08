@@ -13,13 +13,20 @@
 
       <div class="element_mid">&nbsp;</div>
 
-      <div class="element_right_1">Public
+    <%= form_with(model: @recipe, method: :PATCH) do |f| %>
+    <%= f.hidden_field :public, value: @recipe.public?? false : true %>
+    <%= f.hidden_field :index, value: params[:index] %>
+      
+    <div class="element_right_1"><%= @recipe.public?? "Public" : "Private"%>
         <% if @recipe.public %>
           <i class="fa-solid fa-toggle-on fa-2xl toggle-icon" data-recipe-id="<%= @recipe.id %>" style="color: #159341;"></i>
         <% else %>
           <i class="fa-solid fa-toggle-off fa-2xl toggle-icon" data-recipe-id="<%= @recipe.id %>" style="color: #cc1f1a;"></i>
         <% end %>
       </div>
+      
+      <%= f.submit class: "public-update"%>
+    <% end %>
 
     </div>
 
