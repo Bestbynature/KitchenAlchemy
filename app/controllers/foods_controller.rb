@@ -6,9 +6,9 @@ class FoodsController < ApplicationController
   def index
     @foods = Food.all
 
-    if params[:sort_by] == "name"
-      @sort_by = "name"
-      @direction = params[:direction] || "asc"
+    if params[:sort_by] == 'name'
+      @sort_by = 'name'
+      @direction = params[:direction] || 'asc'
       @foods = @foods.order(name: @direction)
     else
       # Default sorting if no sorting params are provided

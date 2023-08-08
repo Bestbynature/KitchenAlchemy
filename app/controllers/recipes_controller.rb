@@ -10,7 +10,7 @@ class RecipesController < ApplicationController
 
     @recipe_foods = RecipeFood.joins(:food)
       .where(recipe_id: @recipe.id)
-      .select("recipe_foods.*, foods.*")
+      .select('recipe_foods.*, foods.*')
 
     @recipe_foods.each do |recipe_food|
       recipe_food.value = recipe_food.calculate_value
@@ -30,7 +30,7 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
-        format.html { redirect_to recipes_url, notice: "Recipe was successfully created." }
+        format.html { redirect_to recipes_url, notice: 'Recipe was successfully created.' }
         format.json { render :show, status: :created, location: @recipe }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,11 +40,11 @@ class RecipesController < ApplicationController
   end
 
   def update
-    notice = !@recipe.public? ? "Recipe is now public" : "Recipe is now private"
+    notice = @recipe.public? ? 'Recipe is now private' : 'Recipe is now public'
     respond_to do |format|
       if @recipe.update(recipe_params)
         index_value = params[:recipe][:index]
-        format.html { redirect_to recipe_url(@recipe, index: index_value), notice: notice }
+        format.html { redirect_to recipe_url(@recipe, index: index_value), notice: }
         format.json { render :show, status: :ok, location: @recipe }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -57,7 +57,7 @@ class RecipesController < ApplicationController
     @recipe.destroy
 
     respond_to do |format|
-      format.html { redirect_to recipes_url, notice: "Recipe was successfully destroyed." }
+      format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

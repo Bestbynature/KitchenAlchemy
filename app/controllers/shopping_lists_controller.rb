@@ -10,7 +10,7 @@ class ShoppingListsController < ApplicationController
     #   recipe_food.value = recipe_food.calculate_value
     #   @sum += recipe_food.price
     #   @count += 1
-  #   end
-  #   @count
+    #   end
+    #   @count
   end
 end

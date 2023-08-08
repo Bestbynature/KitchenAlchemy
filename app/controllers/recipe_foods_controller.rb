@@ -20,7 +20,10 @@ class RecipeFoodsController < ApplicationController
     index_value = params[:recipe_food][:index]
     respond_to do |format|
       if @recipe_food.save
-        format.html { redirect_to recipe_url(@recipe_food.recipe_id, index: index_value), notice: 'Recipe food was successfully created.' }
+        format.html do
+          redirect_to recipe_url(@recipe_food.recipe_id, index: index_value),
+                      notice: 'Recipe food was successfully created.'
+        end
         format.json { render :show, status: :created, location: @recipe_food }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -47,7 +50,9 @@ class RecipeFoodsController < ApplicationController
     @recipe_food.destroy
 
     respond_to do |format|
-      format.html { redirect_to recipe_url(recipe_id, index: index_value), notice: 'Recipe food was successfully destroyed.' }
+      format.html do
+        redirect_to recipe_url(recipe_id, index: index_value), notice: 'Recipe food was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end

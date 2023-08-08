@@ -1,7 +1,6 @@
 class Recipe < ApplicationRecord
-
   attr_accessor :index_true
-  
+
   belongs_to :user
   has_many :recipe_foods, dependent: :destroy
 
