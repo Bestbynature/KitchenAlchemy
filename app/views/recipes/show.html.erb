@@ -63,13 +63,14 @@
         <td><%= recipe_food.name %></td>
         <td><%= recipe_food.quantity %>&nbsp;<%= recipe_food.measurement_unit %></td>
         <td>$<%= recipe_food.value %></td>
-        <td><%= button_to "Delete", recipe_food, method: :delete, data: { confirm: "Are you sure you want to delete this recipe food?" } %></td>
+        <td><%= button_to "Delete", recipe_food, method: :delete, form_class: "delete-alertbox" %></td>
       </tr>
     <% end %>
   </tbody>
 
 </table>
 
-
+<%# data: {turbo_confirm: "Are you sure?"} %>
+<%# data-confirm: "Are you sure?"} %>
 
 

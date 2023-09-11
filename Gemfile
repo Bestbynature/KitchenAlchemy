@@ -45,3 +45,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+gem "sweetalert2", "~> 7.25"
